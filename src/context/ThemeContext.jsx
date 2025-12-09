@@ -1,5 +1,16 @@
-// TODO: Create a ThemeContext using createContext()
-// TODO: Define and export a ThemeProvider that will manage theme state
+import { createContext, useState } from "react";
 
-// Placeholder export for now
-export const ThemeContext = {};
+//useContext Step 1: Create the ThemeContext
+export const ThemeContext = createContext();
+
+export function ThemeProvider({ children }) {
+  //useContext Step 2: Deine global theme state
+  const [theme, setTheme] = useState("light")
+
+  return (
+    //useContext Step 4: Provide them state and toggle the function to all components
+    <ThemeContext.Provider value={{ theme, setTheme }} >
+      {children}
+    </ThemeContext.Provider>
+  )
+}
